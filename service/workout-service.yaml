@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: workout-service
+  labels:
+    app: workout-app
+spec:
+  #Type options: (default) ClusterIP, NodePort, LoadBalancer
+  #Type is optional, default is ClusterIP
+  #ClusterIP is used for internal communication
+  #NodePort is used when app needs to be accessed from outside the cluster
+  type: NodePort
+  ports:
+    - targetPort: 3000
+      port: 3000
+      protocol: TCP
+      # nodePort is optional and only applies when type is NodePort
+      # nodePort must be in the range 30000-32767
+      # used when app needs to be accessed from outside the cluster
+      nodePort: 30004
+  selector:
+    app: workout-app

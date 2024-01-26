@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workout-deployment
+  labels:
+    tier: frontend
+    app: workout-app
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: workout-app
+      labels:
+        app: workout-app
+
+    spec:
+      containers:
+        - name: workout-container
+          image: johndrake31/workout-app:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+  selector:
+    matchLabels:
+      app: workout-app
