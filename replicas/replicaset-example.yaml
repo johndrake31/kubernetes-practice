@@ -7,8 +7,9 @@ metadata:
 spec:
   replicas: 3
   selector:
+    # should match the labels of pod template
     matchLabels:
-      app: myapp
+      app: myapp 
   template:
     metadata:
       name: nginx-pod
