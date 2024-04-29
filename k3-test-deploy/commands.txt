@@ -1,0 +1,3 @@
+kubectl apply -f workout-app-deploy.yaml
+kubectl apply -f workout-service.yaml
+kubectl apply -f workout-ingress.yaml
