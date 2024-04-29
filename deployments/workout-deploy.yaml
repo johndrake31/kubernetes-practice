@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: app/v1
 kind: Deployment
 metadata:
   name: workout-deployment
@@ -12,7 +12,6 @@ spec:
       name: workout-app
       labels:
         app: workout-app
-
     spec:
       containers:
         - name: workout-container

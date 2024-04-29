@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workout-deployment
+  labels:
+    tier: frontend
+    app: workout-app
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: workout-app
+      labels:
+        app: workout-app
+    spec:
+      containers:
+        - name: workout-container
+          image: johndrake31/workout-app:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000  # Expose port 3000 for the React app
+        - name: nginx-container
+          image: nginx:latest
+          ports:
+            - containerPort: 80  # Expose port 80 for Nginx
+          volumeMounts:
+            - name: react-app
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: react-app  # Define the volume named "react-app"
+          emptyDir: {}     # Use an emptyDir volume for simplicity
+  selector:
+    matchLabels:
+      app: workout-app
